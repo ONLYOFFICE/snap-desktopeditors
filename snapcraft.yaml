@@ -1,0 +1,64 @@
+name: onlyoffice-desktopeditors
+version: "4.8.0"
+summary: "An office suite that allowing to create, view and edit local documents."
+description: "ONLYOFFICE Desktop Editors is a free office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit documents stored on your Windows/Linux PC or Mac without an Internet connection. It is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx."
+grade: devel
+confinement: devmode
+icon: icons/asc-de-256.png
+
+apps:
+  onlyoffice-desktopeditors:
+    command: usr/bin/desktopeditors
+    desktop: usr/share/applications/desktopeditors.desktop
+    plugs:
+      - home
+      - network
+      - desktop
+      - x11
+      - locale-control
+      - opengl
+
+parts:
+  onlyoffice-desktopeditors:
+    plugin: dump
+#    source: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb
+    source: http://repo-doc-onlyoffice-com.s3.amazonaws.com/ubuntu/trusty/onlyoffice-desktopeditors//4.8.0-86/repo/onlyoffice-desktopeditors_4.8.0-86_amd64.deb
+    source-type: deb
+    stage-packages:
+      - x11-common
+      - libc6
+      - zlib1g
+      - libpcre3
+      - libselinux1
+      - libsystemd0
+      - libcomerr2
+      - liblzma5
+      - libgcrypt20
+      - libgpg-error0
+      - libuuid1
+      - libgcc1
+      - libxss1
+      - libxml2
+      - libcurl3
+      - libgtkglext1
+      - libcairo2
+      - libnss3
+      - libstdc++6
+      - fonts-dejavu
+      - fonts-opensymbol
+      - fonts-liberation
+      - fonts-crosextra-carlito
+      - ttf-mscorefonts-installer
+      - fonts-takao-gothic
+    install: |
+      mv $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors-old
+
+#    install: |
+#      mv $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t.bin
+
+  starter:
+    plugin: dump
+    source: ./bin/
+    organize:
+      run-desktopeditors.sh: usr/bin/desktopeditors
+#      x2t.sh: $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t
