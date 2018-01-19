@@ -30,42 +30,42 @@ parts:
     source-type: deb
     stage-packages:
       - on amd64:
-        - x11-common
-        - libc6
-        - zlib1g
-        - libpcre3
-        - libgl1-mesa-dri
-        - libcanberra-gtk-module
-        - packagekit-gtk3-module
-        - overlay-scrollbar-gtk2
-        - libatk-adaptor
-        - unity-gtk2-module
+        - fonts-crosextra-carlito
+        - fonts-dejavu
+        - fonts-liberation
+        - fonts-opensymbol
+        - fonts-takao-gothic
         - gsettings-desktop-schemas
         - gsettings-ubuntu-schemas
-        - libgail-3-0
-        - libselinux1
-        - libsystemd0
+        - libatk-adaptor
+        - libc6
+        - libcairo2
+        - libcanberra-gtk-module
         - libcomerr2
-        - liblzma5
+        - libcurl3
+        - libgail-3-0
+        - libgcc1
         - libgcrypt20
+        - libgl1-mesa-dri
         - libgpg-error0
         - libgsettings-qt1
-        - libuuid1
-        - libgcc1
-        - libxss1
-        - libxml2
-        - libcurl3
         - libgtkglext1
-        - libcairo2
+        - liblzma5
         - libnss3
+        - libpcre3
+        - libselinux1
         - libstdc++6
-        - fonts-dejavu
-        - fonts-opensymbol
-        - fonts-liberation
-        - fonts-crosextra-carlito
-        - ttf-mscorefonts-installer
-        - fonts-takao-gothic
+        - libsystemd0
+        - libuuid1
+        - libxml2
+        - libxss1
         - locales-all
+        - overlay-scrollbar-gtk2
+        - packagekit-gtk3-module
+        - ttf-mscorefonts-installer
+        - unity-gtk2-module
+        - x11-common
+        - zlib1g
       - else fail
     install: |
       mv $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors-old &&
