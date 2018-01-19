@@ -45,6 +45,7 @@ parts:
         - libcurl3
         - libgail-3-0
         - libgcc1
+        - libgconf-2-4
         - libgcrypt20
         - libgl1-mesa-dri
         - libgpg-error0
