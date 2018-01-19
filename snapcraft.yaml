@@ -29,42 +29,44 @@ parts:
     source: http://repo-doc-onlyoffice-com.s3.amazonaws.com/ubuntu/trusty/onlyoffice-desktopeditors//4.8.0-86/repo/onlyoffice-desktopeditors_4.8.0-86_amd64.deb
     source-type: deb
     stage-packages:
-      - x11-common
-      - libc6
-      - zlib1g
-      - libpcre3
-      - libgl1-mesa-dri
-      - libcanberra-gtk-module
-      - packagekit-gtk3-module
-      - overlay-scrollbar-gtk2
-      - libatk-adaptor
-      - unity-gtk2-module
-      - gsettings-desktop-schemas
-      - gsettings-ubuntu-schemas
-      - libgail-3-0
-      - libselinux1
-      - libsystemd0
-      - libcomerr2
-      - liblzma5
-      - libgcrypt20
-      - libgpg-error0
-      - libgsettings-qt1
-      - libuuid1
-      - libgcc1
-      - libxss1
-      - libxml2
-      - libcurl3
-      - libgtkglext1
-      - libcairo2
-      - libnss3
-      - libstdc++6
-      - fonts-dejavu
-      - fonts-opensymbol
-      - fonts-liberation
-      - fonts-crosextra-carlito
-      - ttf-mscorefonts-installer
-      - fonts-takao-gothic
-      - locales-all
+      - on amd64:
+        - x11-common
+        - libc6
+        - zlib1g
+        - libpcre3
+        - libgl1-mesa-dri
+        - libcanberra-gtk-module
+        - packagekit-gtk3-module
+        - overlay-scrollbar-gtk2
+        - libatk-adaptor
+        - unity-gtk2-module
+        - gsettings-desktop-schemas
+        - gsettings-ubuntu-schemas
+        - libgail-3-0
+        - libselinux1
+        - libsystemd0
+        - libcomerr2
+        - liblzma5
+        - libgcrypt20
+        - libgpg-error0
+        - libgsettings-qt1
+        - libuuid1
+        - libgcc1
+        - libxss1
+        - libxml2
+        - libcurl3
+        - libgtkglext1
+        - libcairo2
+        - libnss3
+        - libstdc++6
+        - fonts-dejavu
+        - fonts-opensymbol
+        - fonts-liberation
+        - fonts-crosextra-carlito
+        - ttf-mscorefonts-installer
+        - fonts-takao-gothic
+        - locales-all
+      - else fail
     install: |
       mv $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors-old &&
       sed 's|asc-de|\${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $SNAPCRAFT_PART_INSTALL/usr/share/applications/desktopeditors.desktop
