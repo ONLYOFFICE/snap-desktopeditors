@@ -14,6 +14,12 @@ ONLYOFFICE Desktop Editors include the following editors:
  
 The editors allow you to create, edit, save and export text, spreadsheet and presentation documents.
 
+## Getting started
+
+    sudo snap install onlyoffice-desktopeditors --candidate 
+
+([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
+
 ## Project Information
 
 Official website: [http://www.onlyoffice.com/apps.aspx](http://www.onlyoffice.com/apps.aspx "http://www.onlyoffice.com/apps.aspx")
