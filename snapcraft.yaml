@@ -5,6 +5,8 @@ description: "ONLYOFFICE Desktop Editors is a free office suite that combines te
 grade: stable
 confinement: strict
 icon: icons/asc-de-256.png
+architectures:
+  - amd64
 
 apps:
   onlyoffice-desktopeditors:
@@ -73,6 +75,11 @@ parts:
 
 #    install: |
 #      mv $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t.bin
+
+  mscore-fonts:
+    plugin: dump
+    source: https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+    source-type: rpm
 
   starter:
     plugin: dump
