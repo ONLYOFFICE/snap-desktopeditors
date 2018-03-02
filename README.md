@@ -16,7 +16,7 @@ The editors allow you to create, edit, save and export text, spreadsheet and pre
 
 ## Getting started
 
-    sudo snap install onlyoffice-desktopeditors --candidate 
+    sudo snap install onlyoffice-desktopeditors 
 
 ([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
 
