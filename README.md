@@ -14,11 +14,40 @@ ONLYOFFICE Desktop Editors include the following editors:
  
 The editors allow you to create, edit, save and export text, spreadsheet and presentation documents.
 
-## Getting started
+## Installing ONLYOFFICE Desktop Editors using Snapcraft command line tool
 
-    sudo snap install onlyoffice-desktopeditors
+ONLYOFFICE Desktop Editors are available in [Snapcraft store](https://snapcraft.io/onlyoffice-desktopeditors) as a snap package. A snap contains all the dependencies to run the application. To use it, all you need is snapd, a system to install and manage snaps. Snapd is included into most of modern distributions. You only need to either enable or install it. See the [official snap project page](https://docs.snapcraft.io/core/install) for the snapd installation instructions.
 
-([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
+For example, to install snapd under Ubuntu you need to run the commands:
+
+```
+sudo apt update
+sudo apt install snapd
+```
+
+Now the editors can be easily installed using the following command:
+
+```
+snap install onlyoffice-desktopeditors
+```
+
+## Running ONLYOFFICE Desktop Editors
+
+Once the installation is over, you can run the editors using the terminal command:
+
+```
+snap run onlyoffice-desktopeditors
+```
+
+In case you prefer to use graphical user interface, you can always find the editors in your computer Application menu - Office - ONLYOFFICE.
+
+## Uninstalling ONLYOFFICE Desktop Editors
+
+To remove the snap containing ONLYOFFICE editors use the following command:
+
+```
+snap remove onlyoffice-desktopeditors
+```
 
 ## Project Information
 
