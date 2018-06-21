@@ -13,17 +13,17 @@ apps:
     command: usr/bin/desktopeditors
     desktop: usr/share/applications/desktopeditors.desktop
     plugs:
-      - home
-      - network
-      - desktop
-      - x11
-      - locale-control
-      - opengl
-      - unity7
-      - cups-control
-      - gsettings
       - browser-support
-
+      - cups-control
+      - desktop
+      - gsettings
+      - home
+      - locale-control
+      - network
+      - opengl
+      - removable-media
+      - unity7
+      - x11
 parts:
   onlyoffice-desktopeditors:
     plugin: dump
@@ -44,6 +44,8 @@ parts:
         - libcanberra-gtk-module
         - libcomerr2
         - libcurl3
+        - libcurl3-gnutls
+        - libdouble-conversion1v5
         - libgail-3-0
         - libgcc1
         - libgconf-2-4
@@ -52,13 +54,25 @@ parts:
         - libgpg-error0
         - libgsettings-qt1
         - libgtkglext1
+        - libjasper1
         - liblzma5
         - libnss3
         - libpcre3
+        - libqt5qml5
+        - libqt5quick5
         - libselinux1
         - libstdc++6
         - libsystemd0
         - libuuid1
+        - libxcb-icccm4
+        - libxcb-image0
+        - libxcb-keysyms1
+        - libxcb-randr0
+        - libxcb-render-util0
+        - libxcb-shape0
+        - libxcb-util1
+        - libxcb-xkb1
+        - libxkbcommon-x11-0
         - libxml2
         - libxss1
         - locales-all
@@ -69,7 +83,8 @@ parts:
         - x11-common
         - zlib1g
       - else fail
-    install: |
+    override-build: |
+      snapcraftctl build
       mv $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors-old &&
       sed 's|asc-de|\${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $SNAPCRAFT_PART_INSTALL/usr/share/applications/desktopeditors.desktop
 
