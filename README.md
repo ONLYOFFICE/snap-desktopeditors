@@ -51,7 +51,7 @@ snap remove onlyoffice-desktopeditors
 
 ## Project Information
 
-Official website: [http://www.onlyoffice.com/apps.aspx](http://www.onlyoffice.com/apps.aspx "http://www.onlyoffice.com/apps.aspx")
+Official website: [https://www.onlyoffice.com/apps.aspx](https://www.onlyoffice.com/apps.aspx/?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnap)
 
 Code repository: [https://github.com/ONLYOFFICE/DesktopEditors](https://github.com/ONLYOFFICE/DesktopEditors "https://github.com/ONLYOFFICE/DesktopEditors")
 
