@@ -3,6 +3,7 @@
 ARCH=x86_64-linux-gnu
 
 export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH/gtk-2.0/modules:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH/pulseaudio:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$SNAP/opt/onlyoffice/desktopeditors:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$SNAP/opt/onlyoffice/desktopeditors/converter:$LD_LIBRARY_PATH
 
