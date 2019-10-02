@@ -9,6 +9,14 @@ export LD_LIBRARY_PATH=$SNAP/opt/onlyoffice/desktopeditors/converter:$LD_LIBRARY
 
 export LD_PRELOAD=$SNAP/opt/onlyoffice/desktopeditors/libcef.so
 
+if [ $EUID != 0 ]; then
+    HOME_DIR=/home/${USER}
+else
+    HOME_DIR=/root/
+fi
+
+export HOME=${HOME_DIR}
+
 # Based on https://github.com/Ubuntu/snappy-playpen/blob/master/plank/launcher
 
 # XKB config
