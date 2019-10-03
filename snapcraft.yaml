@@ -4,7 +4,6 @@ summary: "An office suite that allowing to create, view and edit local documents
 description: "ONLYOFFICE Desktop Editors is a free office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit documents stored on your Windows/Linux PC or Mac without an Internet connection. It is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx."
 grade: stable
 confinement: strict
-base: core18
 icon: icons/asc-de-256.png
 architectures:
   - amd64
@@ -47,6 +46,7 @@ parts:
         - libcomerr2
         - libcurl3
         - libcurl3-gnutls
+        - libdouble-conversion1v5
         - libflac8
         - libgail-3-0
         - libgcc1
@@ -58,6 +58,7 @@ parts:
         - libgstreamer-plugins-base1.0-0
         - libgstreamer1.0-0
         - libgtkglext1
+        - libjasper1
         - liblzma5
         - libnss3
         - liborc-0.4-0
