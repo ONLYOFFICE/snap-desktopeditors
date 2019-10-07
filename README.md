@@ -50,7 +50,7 @@ snap remove onlyoffice-desktopeditors
 ```
 ## Connect removable media
 
-ONLYOFFICE Desktop Editors can read/write files to ```/media``` for this use the following command:
+ONLYOFFICE Desktop Editors can read/write files to `/media` for this use the following command:
 
 ```
 snap connect onlyoffice desktopeditors:removable-media
