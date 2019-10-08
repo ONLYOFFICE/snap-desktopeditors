@@ -49,6 +49,14 @@ To remove the snap containing ONLYOFFICE editors use the following command:
 snap remove onlyoffice-desktopeditors
 ```
 
+## Connect removable media
+
+ONLYOFFICE Desktop Editors can read files from and write files to the `/media` directory. For this use the following command:
+
+```
+snap connect onlyoffice-desktopeditors:removable-media
+```
+
 ## Project Information
 
 Official website: [https://www.onlyoffice.com/apps.aspx](https://www.onlyoffice.com/apps.aspx/?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnap)
