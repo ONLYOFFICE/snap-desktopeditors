@@ -21,14 +21,14 @@ ONLYOFFICE Desktop Editors are available in [Snapcraft store](https://snapcraft.
 For example, to install snapd under Ubuntu you need to run the commands:
 
 ```
-sudo apt update
-sudo apt install snapd
+# apt update
+# apt install snapd
 ```
 
 Now the editors can be easily installed using the following command:
 
 ```
-snap install onlyoffice-desktopeditors
+# snap install onlyoffice-desktopeditors
 ```
 
 ## Running ONLYOFFICE Desktop Editors
@@ -36,7 +36,7 @@ snap install onlyoffice-desktopeditors
 Once the installation is over, you can run the editors using the terminal command:
 
 ```
-snap run onlyoffice-desktopeditors
+$ snap run onlyoffice-desktopeditors
 ```
 
 In case you prefer to use graphical user interface, you can always find the editors in your computer Application menu - Office - ONLYOFFICE.
@@ -46,7 +46,7 @@ In case you prefer to use graphical user interface, you can always find the edit
 To remove the snap containing ONLYOFFICE editors use the following command:
 
 ```
-snap remove onlyoffice-desktopeditors
+# snap remove onlyoffice-desktopeditors
 ```
 
 ## Connect removable media
@@ -54,7 +54,7 @@ snap remove onlyoffice-desktopeditors
 ONLYOFFICE Desktop Editors can read files from and write files to the `/media` directory. For this use the following command:
 
 ```
-snap connect onlyoffice-desktopeditors:removable-media
+# snap connect onlyoffice-desktopeditors:removable-media
 ```
 
 ## Project Information
