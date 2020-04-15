@@ -1,5 +1,5 @@
 name: onlyoffice-desktopeditors
-version: "5.4.2"
+version: "5.5.1"
 summary: "An office suite that allowing to create, view and edit local documents."
 description: "ONLYOFFICE Desktop Editors is a free office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit documents stored on your Windows/Linux PC or Mac without an Internet connection. It is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx."
 grade: stable
@@ -12,7 +12,7 @@ architectures:
 apps:
   onlyoffice-desktopeditors:
     command: usr/bin/desktopeditors
-    desktop: usr/share/applications/desktopeditors.desktop
+    desktop: usr/share/applications/onlyoffice-desktopeditors.desktop
     plugs:
       - browser-support
       - cups-control
@@ -93,7 +93,7 @@ parts:
     override-build: |
       snapcraftctl build
       mv $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors-old &&
-      sed 's|asc-de|\${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $SNAPCRAFT_PART_INSTALL/usr/share/applications/desktopeditors.desktop
+      sed 's|=onlyoffice-desktopeditors|\=${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $SNAPCRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
 
 #    install: |
 #      mv $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t.bin
