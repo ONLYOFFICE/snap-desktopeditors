@@ -94,6 +94,8 @@ if [ ! -d $GS_SCHEMA_DIR ]; then
   $SNAP/usr/lib/$ARCH/glib-2.0/glib-compile-schemas $GS_SCHEMA_DIR
 fi
 
+export LC_ALL=C.UTF-8
+
 # Icon themes cache
 #if [ ! -d $XDG_DATA_HOME/icons ]; then
 #  mkdir -p $XDG_DATA_HOME/icons
