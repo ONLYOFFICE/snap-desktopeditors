@@ -1,5 +1,5 @@
 name: onlyoffice-desktopeditors
-version: "6.0.1"
+version: "6.0.2"
 summary: "An office suite that allowing to create, view and edit local documents."
 description: "ONLYOFFICE Desktop Editors is a free office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit documents stored on your Windows/Linux PC or Mac without an Internet connection. It is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx."
 grade: stable
