@@ -21,6 +21,7 @@ export HOME=${HOME_DIR}
 
 # XKB config
 export XKB_CONFIG_ROOT=$SNAP/usr/share/X11/xkb
+export QT_XKB_CONFIG_ROOT=$SNAP/usr/share/X11/xkb
 
 # XDG Config
 export XDG_CONFIG_DIRS=$SNAP/etc:$XDG_CONFIG_DIRS
