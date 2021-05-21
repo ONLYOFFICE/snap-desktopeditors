@@ -9,6 +9,12 @@ icon: icons/asc-de-256.png
 architectures:
   - amd64
 
+layout:
+  /usr/bin:
+    bind: $SNAP/usr/bin
+  /usr/lib/x86_64-linux-gnu:
+    bind: $SNAP/usr/lib/x86_64-linux-gnu
+
 apps:
   onlyoffice-desktopeditors:
     command: usr/bin/desktopeditors
@@ -32,6 +38,7 @@ parts:
     source-type: deb
     stage-packages:
       - on amd64:
+        - curl
         - fonts-crosextra-carlito
         - fonts-dejavu
         - fonts-liberation
@@ -45,7 +52,7 @@ parts:
         - libcairo2
         - libcanberra-gtk-module
         - libcomerr2
-        - libcurl3
+        - libcurl4
         - libcurl3-gnutls
         - libflac8
         - libgail-3-0
@@ -87,6 +94,7 @@ parts:
         - packagekit-gtk3-module
         - ttf-mscorefonts-installer
         - unity-gtk2-module
+        - wget
         - x11-common
         - zlib1g
       - else fail
