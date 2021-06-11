@@ -89,13 +89,18 @@ GS_SCHEMA_DIR=$XDG_DATA_HOME/glib-2.0/schemas
 if [ ! -d $GS_SCHEMA_DIR ]; then
   mkdir -p $GS_SCHEMA_DIR
   for d in "${data_dirs_array[@]}"; do
-    ln -s $d/glib-2.0/schemas/*.xml $GS_SCHEMA_DIR
+    ln -sf $d/glib-2.0/schemas/*.xml $GS_SCHEMA_DIR
   done
 
   $SNAP/usr/lib/$ARCH/glib-2.0/glib-compile-schemas $GS_SCHEMA_DIR
 fi
 
 export LC_ALL=C.UTF-8
+
+# Create $XDG_RUNTIME_DIR if it doesn't exist
+if [ ! -d "$XDG_RUNTIME_DIR" ]; then
+	mkdir -p $XDG_RUNTIME_DIR -m 700
+fi
 
 # Icon themes cache
 #if [ ! -d $XDG_DATA_HOME/icons ]; then
