@@ -14,6 +14,8 @@ layout:
     bind: $SNAP/usr/bin
   /usr/lib/x86_64-linux-gnu:
     bind: $SNAP/usr/lib/x86_64-linux-gnu
+  /etc/fonts:
+    bind: $SNAP/etc/fonts
 
 apps:
   onlyoffice-desktopeditors:
