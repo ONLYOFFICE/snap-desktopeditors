@@ -24,6 +24,7 @@ export XKB_CONFIG_ROOT=$SNAP/usr/share/X11/xkb
 export QT_XKB_CONFIG_ROOT=$SNAP/usr/share/X11/xkb
 
 # XDG Config
+export XDG_CONFIG_HOME=$SNAP_USER_DATA/.config-$SNAP_VERSION
 export XDG_CONFIG_DIRS=$SNAP/etc:$XDG_CONFIG_DIRS
 
 # Note: this doesn't seem to work, QML's LocalStorage either ignores
