@@ -22,6 +22,7 @@ apps:
     command: usr/bin/desktopeditors
     desktop: usr/share/applications/onlyoffice-desktopeditors.desktop
     plugs:
+      - audio-playback
       - browser-support
       - cups-control
       - desktop
@@ -33,6 +34,7 @@ apps:
       - removable-media
       - unity7
       - x11
+
 parts:
   onlyoffice-desktopeditors:
     plugin: dump
@@ -104,6 +106,57 @@ parts:
       snapcraftctl build
       mv $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors-old &&
       sed 's|=onlyoffice-desktopeditors|\=${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $SNAPCRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
+
+  gstreamer:
+    plugin: nil
+    stage-packages:
+      - gstreamer1.0-gtk3
+      - gstreamer1.0-libav
+      - gstreamer1.0-plugins-bad
+      - gstreamer1.0-plugins-base
+      - gstreamer1.0-plugins-good
+      - gstreamer1.0-pulseaudio
+      - gstreamer1.0-x
+      - libavcodec57
+      - libavfilter6
+      - libavformat57
+      - libavresample3
+      - libavutil55
+      - libcairo-gobject2
+      - libcrystalhd3
+      - libde265-0
+      - libdv4
+      - libfaad2
+      - libffi6
+      - libgpm2
+      - libgstreamer-plugins-bad1.0-0
+      - libgstreamer-plugins-good1.0-0
+      - libmp3lame0
+      - libmodplug1
+      - libogg0
+      - libopenal1
+      - libopenal-data
+      - libopencv-core3.2
+      - libopencv-imgproc3.2
+      - libopenjp2-7
+      - libpostproc54
+      - libslang2
+      - libsnappy1v5
+      - libsoxr0
+      - libswresample2
+      - libswscale4
+      - libtheora0
+      - libtwolame0
+      - libv4l-0
+      - libva2
+      - libvorbis0a
+      - libvpx5
+      - libwavpack1
+      - libwebp6
+      - libx264-152
+      - libx265-146
+      - libxvidcore4
+      - libzvbi0
 
 #    install: |
 #      mv $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t.bin
