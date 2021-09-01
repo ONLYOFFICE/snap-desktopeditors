@@ -101,6 +101,8 @@ parts:
         - wget
         - x11-common
         - zlib1g
+        - ibus-gtk3
+        - fcitx-frontend-gtk3
       - else fail
     override-build: |
       snapcraftctl build
