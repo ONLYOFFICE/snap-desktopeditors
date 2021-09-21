@@ -45,6 +45,7 @@ parts:
     stage-packages:
       - on amd64:
         - curl
+        - dmz-cursor-theme
         - fonts-crosextra-carlito
         - fonts-dejavu
         - fonts-liberation
@@ -105,7 +106,6 @@ parts:
         - zlib1g
         - ibus-gtk3
         - fcitx-frontend-gtk3
-        - dmz-cursor-theme
       - else fail
     override-build: |
       snapcraftctl build
