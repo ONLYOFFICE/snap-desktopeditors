@@ -16,6 +16,8 @@ layout:
     bind: $SNAP/usr/lib/x86_64-linux-gnu
   /etc/fonts:
     bind: $SNAP/etc/fonts
+  /usr/share/icons:
+    bind: $SNAP/usr/share/icons
 
 apps:
   onlyoffice-desktopeditors:
@@ -43,6 +45,7 @@ parts:
     stage-packages:
       - on amd64:
         - curl
+        - dmz-cursor-theme
         - fonts-crosextra-carlito
         - fonts-dejavu
         - fonts-liberation
@@ -108,6 +111,7 @@ parts:
       snapcraftctl build
       mv $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors-old &&
       sed 's|=onlyoffice-desktopeditors|\=${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $SNAPCRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
+      echo "[Icon Theme]\nInherits=DMZ-Black" > $SNAPCRAFT_PART_INSTALL/usr/share/icons/default/index.theme
 
   gstreamer:
     plugin: nil
