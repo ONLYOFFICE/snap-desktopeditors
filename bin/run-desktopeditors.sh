@@ -3,14 +3,17 @@
 ARCH=x86_64-linux-gnu
 
 THEME=`gsettings get org.gnome.desktop.interface gtk-theme`
-if ! [[ "$THEME" == *"Adwaita"* ]] &&
-   ! [[ "$THEME" == *"Ambiance"* ]] &&
-   ! [[ "$THEME" == *"HighContrast"* ]] &&
-   ! [[ "$THEME" == *"Radiance"* ]] &&
-   ! [[ "$THEME" == *"Yaru"* ]]; then
-  echo "Irregular theme <$THEME>. Using Adwaita"
-  export GTK_THEME=Adwaita
-fi
+case $THEME in
+  *"Adwaita"*) ;;
+  *"Ambiance"*) ;;
+  *"HighContrast"*) ;;
+  *"Radiance"*) ;;
+  *"Yaru"*) ;;
+  *)
+    echo "Irregular theme <$THEME>. Using Adwaita"
+    export GTK_THEME=Adwaita
+    ;;
+esac
 
 export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH/gtk-3.0/modules:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH/pulseaudio:$LD_LIBRARY_PATH
