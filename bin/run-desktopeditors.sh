@@ -2,8 +2,22 @@
 
 ARCH=x86_64-linux-gnu
 
+THEME=`gsettings get org.gnome.desktop.interface gtk-theme`
+case $THEME in
+  *"Adwaita"*) ;;
+  *"Ambiance"*) ;;
+  *"HighContrast"*) ;;
+  *"Radiance"*) ;;
+  *"Yaru"*) ;;
+  *)
+    echo "Irregular theme <$THEME>. Using Adwaita"
+    export GTK_THEME=Adwaita
+    ;;
+esac
+
 export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH/gtk-3.0/modules:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH/pulseaudio:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$SNAP/opt/onlyoffice/desktopeditors:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$SNAP/opt/onlyoffice/desktopeditors/converter:$LD_LIBRARY_PATH
 
@@ -69,7 +83,7 @@ fi
 # Build mime.cache
 if [ ! -d $XDG_DATA_HOME/mime ]; then
   cp -a $SNAP/usr/share/mime $XDG_DATA_HOME
-  update-mime-database $XDG_DATA_HOME/mime
+  $SNAP/usr/bin/update-mime-database $XDG_DATA_HOME/mime
 fi
 
 # Setup GDK pixbuf loaders

@@ -4,24 +4,28 @@ summary: "An office suite that allowing to create, view and edit local documents
 description: "ONLYOFFICE Desktop Editors is a free office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit documents stored on your Windows/Linux PC or Mac without an Internet connection. It is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx."
 grade: stable
 confinement: strict
-base: core18
+base: core20
 icon: icons/asc-de-256.png
 architectures:
   - amd64
 
 layout:
-  /usr/bin:
-    bind: $SNAP/usr/bin
-  /usr/lib/x86_64-linux-gnu:
-    bind: $SNAP/usr/lib/x86_64-linux-gnu
   /etc/fonts:
     bind: $SNAP/etc/fonts
   /usr/share/icons:
     bind: $SNAP/usr/share/icons
 
+plugs:
+  gtk-3-themes:
+    interface: content
+    target: $SNAP/share/themes
+    default-provider: gtk-common-themes
+
 apps:
   onlyoffice-desktopeditors:
     command: usr/bin/desktopeditors
+    extensions:
+      - gnome-3-38
     desktop: usr/share/applications/onlyoffice-desktopeditors.desktop
     plugs:
       - audio-playback
@@ -44,8 +48,10 @@ parts:
     source-type: deb
     stage-packages:
       - on amd64:
+        - adwaita-icon-theme
         - curl
         - dmz-cursor-theme
+        - fcitx-frontend-gtk3
         - fonts-crosextra-carlito
         - fonts-dejavu
         - fonts-liberation
@@ -53,6 +59,7 @@ parts:
         - fonts-takao-gothic
         - gsettings-desktop-schemas
         - gsettings-ubuntu-schemas
+        - ibus-gtk3
         - libasyncns0
         - libatk-adaptor
         - libc6
@@ -61,16 +68,20 @@ parts:
         - libcomerr2
         - libcurl4
         - libcurl3-gnutls
+        - libffi7
         - libflac8
         - libgail-3-0
         - libgcc1
         - libgconf-2-4
         - libgcrypt20
         - libgl1-mesa-dri
+        - libglib2.0-0
         - libgpg-error0
         - libgsettings-qt1
         - libgstreamer-plugins-base1.0-0
         - libgstreamer1.0-0
+        - libgtk-3-0
+        - libgtk-3-bin
         - libgtkglext1
         - liblzma5
         - libnss3
@@ -104,15 +115,13 @@ parts:
         - wget
         - x11-common
         - zlib1g
-        - ibus-gtk3
-        - fcitx-frontend-gtk3
       - else fail
     override-build: |
       snapcraftctl build
       mv $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors-old &&
       sed 's|=onlyoffice-desktopeditors|\=${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $SNAPCRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
       echo "[Icon Theme]\nInherits=DMZ-Black" > $SNAPCRAFT_PART_INSTALL/usr/share/icons/default/index.theme
-
+      
   gstreamer:
     plugin: nil
     stage-packages:
@@ -123,17 +132,17 @@ parts:
       - gstreamer1.0-plugins-good
       - gstreamer1.0-pulseaudio
       - gstreamer1.0-x
-      - libavcodec57
-      - libavfilter6
-      - libavformat57
-      - libavresample3
-      - libavutil55
+      - libavcodec58
+      - libavfilter7
+      - libavformat58
+      - libavresample4
+      - libavutil56
       - libcairo-gobject2
       - libcrystalhd3
       - libde265-0
       - libdv4
       - libfaad2
-      - libffi6
+      - libffi7
       - libgpm2
       - libgstreamer-plugins-bad1.0-0
       - libgstreamer-plugins-good1.0-0
@@ -142,25 +151,25 @@ parts:
       - libogg0
       - libopenal1
       - libopenal-data
-      - libopencv-core3.2
-      - libopencv-imgproc3.2
+      - libopencv-core4.2
+      - libopencv-imgproc4.2
       - libopenjp2-7
-      - libpostproc54
+      - libpostproc55
       - libslang2
       - libsnappy1v5
       - libsoxr0
-      - libswresample2
-      - libswscale4
+      - libswresample3
+      - libswscale5
       - libtheora0
       - libtwolame0
       - libv4l-0
       - libva2
       - libvorbis0a
-      - libvpx5
+      - libvpx6
       - libwavpack1
       - libwebp6
-      - libx264-152
-      - libx265-146
+      - libx264-155
+      - libx265-179
       - libxvidcore4
       - libzvbi0
 
