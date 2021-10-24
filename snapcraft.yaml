@@ -6,6 +6,7 @@ grade: stable
 confinement: strict
 base: core20
 icon: icons/asc-de-256.png
+compression: lzo
 architectures:
   - amd64
 
