@@ -32,6 +32,8 @@ apps:
     extensions:
       - gnome-3-38
     desktop: usr/share/applications/onlyoffice-desktopeditors.desktop
+    environment:
+      DISABLE_WAYLAND: 1
     plugs:
       - audio-playback
       - browser-support
