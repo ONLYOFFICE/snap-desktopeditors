@@ -29,6 +29,7 @@ plugs:
 apps:
   onlyoffice-desktopeditors:
     command: usr/bin/desktopeditors
+    common-id: org.onlyoffice.desktopeditors
     extensions:
       - gnome-3-38
     desktop: usr/share/applications/onlyoffice-desktopeditors.desktop
