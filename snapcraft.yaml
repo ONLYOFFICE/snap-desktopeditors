@@ -52,7 +52,7 @@ apps:
 parts:
   onlyoffice-desktopeditors:
     plugin: dump
-    source: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb
+    source: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_6.4.2_amd64.deb
     source-type: deb
     stage-packages:
       - on amd64:
