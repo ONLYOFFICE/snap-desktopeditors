@@ -21,7 +21,8 @@ export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$SNAP/opt/onlyoffice/desktopeditors:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$SNAP/opt/onlyoffice/desktopeditors/converter:$LD_LIBRARY_PATH
 
-export LD_PRELOAD=$SNAP/opt/onlyoffice/desktopeditors/libcef.so
+SNAP_LD_PATH=$SNAP/usr/lib/$ARCH
+export LD_PRELOAD=$SNAP_LD_PATH/libnss3.so:$SNAP_LD_PATH/libnssutil3.so:$SNAP_LD_PATH/libplc4.so:$SNAP_LD_PATH/libplds4.so:$SNAP_LD_PATH/libnspr4.so
 
 if [ $EUID != 0 ]; then
     HOME_DIR=/home/${USER}

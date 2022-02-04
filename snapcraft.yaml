@@ -122,6 +122,7 @@ parts:
         - unity-gtk2-module
         - wget
         - x11-common
+        - xdg-utils
         - zlib1g
       - else fail
     override-build: |
