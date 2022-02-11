@@ -19,6 +19,10 @@ layout:
     bind-file: $SNAP/usr/bin/wget
   /usr/lib/x86_64-linux-gnu/libpsl.so.5:
     symlink: $SNAP/usr/lib/x86_64-linux-gnu/libpsl.so.5
+  /usr/lib/x86_64:
+    symlink: $SNAP/usr/lib/x86_64-linux-gnu
+  /usr/lib/x86_64-linux-gnu/qt5:
+    bind: $SNAP/usr/lib/x86_64-linux-gnu/qt5
 
 plugs:
   gtk-3-themes:
@@ -68,6 +72,7 @@ parts:
         - gsettings-desktop-schemas
         - gsettings-ubuntu-schemas
         - ibus-gtk3
+        - kde-cli-tools
         - libasyncns0
         - libatk-adaptor
         - libc6
