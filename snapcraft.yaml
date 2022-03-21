@@ -25,6 +25,10 @@ plugs:
     interface: content
     target: $SNAP/share/themes
     default-provider: gtk-common-themes
+  cups-relation:
+    interface: content
+    target: $SNAP
+    default-provider: cups
 
 apps:
   onlyoffice-desktopeditors:
@@ -38,7 +42,7 @@ apps:
     plugs:
       - audio-playback
       - browser-support
-      - cups-control
+      - cups
       - desktop
       - gsettings
       - home
