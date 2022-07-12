@@ -133,6 +133,7 @@ parts:
       mv $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors-old &&
       sed 's|=onlyoffice-desktopeditors|\=${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $SNAPCRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
       echo "[Icon Theme]\nInherits=DMZ-Black" > $SNAPCRAFT_PART_INSTALL/usr/share/icons/default/index.theme
+      sed 's|deb|snap|g' -i $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/package.config
       
   gstreamer:
     plugin: nil
