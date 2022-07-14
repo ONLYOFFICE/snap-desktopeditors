@@ -1,5 +1,5 @@
 name: onlyoffice-desktopeditors
-version: "7.1.0"
+version: "7.1.1"
 summary: "An office suite that allowing to create, view and edit local documents."
 description: "ONLYOFFICE Desktop Editors is a free office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit documents stored on your Windows/Linux PC or Mac without an Internet connection. It is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx."
 grade: stable
@@ -56,7 +56,7 @@ apps:
 parts:
   onlyoffice-desktopeditors:
     plugin: dump
-    source: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_7.1.0_amd64.deb
+    source: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_7.1.1_amd64.deb
     source-type: deb
     stage-packages:
       - on amd64:
