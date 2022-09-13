@@ -56,8 +56,7 @@ apps:
 parts:
   onlyoffice-desktopeditors:
     plugin: dump
-    source: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_7.1.0_amd64.deb
-    source-type: deb
+    source: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors-7.1.0-x64.tar.gz
     stage-packages:
       - on amd64:
         - adwaita-icon-theme
@@ -130,7 +129,7 @@ parts:
       - else fail
     override-build: |
       craftctl default
-      mv $CRAFT_PART_INSTALL/usr/bin/desktopeditors $CRAFT_PART_INSTALL/usr/bin/desktopeditors-old &&
+      #mv $CRAFT_PART_INSTALL/usr/bin/desktopeditors $CRAFT_PART_INSTALL/usr/bin/desktopeditors-old &&
       sed 's|=onlyoffice-desktopeditors|\=${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $CRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
       echo "[Icon Theme]\nInherits=DMZ-Black" > $CRAFT_PART_INSTALL/usr/share/icons/default/index.theme
       sed 's|deb|snap|g' -i $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/package.config
@@ -148,10 +147,8 @@ parts:
       - libavcodec58
       - libavfilter7
       - libavformat58
-      - libavresample4
       - libavutil56
       - libcairo-gobject2
-      - libcrystalhd3
       - libde265-0
       - libdv4
       - libfaad2
@@ -164,8 +161,8 @@ parts:
       - libogg0
       - libopenal1
       - libopenal-data
-      - libopencv-core4.2
-      - libopencv-imgproc4.2
+      - libopencv-core4.5d
+      - libopencv-imgproc4.5d
       - libopenjp2-7
       - libpostproc55
       - libslang2
@@ -178,11 +175,11 @@ parts:
       - libv4l-0
       - libva2
       - libvorbis0a
-      - libvpx6
+      - libvpx7
       - libwavpack1
-      - libwebp6
-      - libx264-155
-      - libx265-179
+      - libwebp7
+      - libx264-163
+      - libx265-199
       - libxvidcore4
       - libzvbi0
 
