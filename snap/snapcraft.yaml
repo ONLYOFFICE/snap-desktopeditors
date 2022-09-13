@@ -129,7 +129,14 @@ parts:
       - else fail
     override-build: |
       craftctl default
-      rm -r -f $CRAFT_PART_INSTALL/opt
+      find $CRAFT_PART_INSTALL/ -maxdepth 1 \
+        -not -path $CRAFT_PART_INSTALL/ \
+        -not -path $CRAFT_PART_INSTALL/etc \
+        -not -path $CRAFT_PART_INSTALL/lib \
+        -not -path $CRAFT_PART_INSTALL/lib64 \
+        -not -path $CRAFT_PART_INSTALL/usr \
+        -not -path $CRAFT_PART_INSTALL/var \
+        -exec rm -rf {} \;
       mkdir -p $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors
       cp -r * $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors
       mkdir -p $CRAFT_PART_INSTALL/usr/share/applications
