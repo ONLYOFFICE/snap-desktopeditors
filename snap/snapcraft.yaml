@@ -1,10 +1,10 @@
 name: onlyoffice-desktopeditors
-version: "7.1.1"
+version: "7.2.0"
 summary: "An office suite that allowing to create, view and edit local documents."
 description: "ONLYOFFICE Desktop Editors is a free office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit documents stored on your Windows/Linux PC or Mac without an Internet connection. It is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx."
 grade: stable
 confinement: strict
-base: core20
+base: core22
 icon: icons/asc-de-256.png
 compression: lzo
 architectures:
@@ -35,7 +35,7 @@ apps:
     command: usr/bin/desktopeditors
     common-id: org.onlyoffice.desktopeditors
     extensions:
-      - gnome-3-38
+      - gnome
     desktop: usr/share/applications/onlyoffice-desktopeditors.desktop
     environment:
       DISABLE_WAYLAND: 1
@@ -56,8 +56,7 @@ apps:
 parts:
   onlyoffice-desktopeditors:
     plugin: dump
-    source: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_7.1.1_amd64.deb
-    source-type: deb
+    source: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors-7.2.0-x64.tar.gz
     stage-packages:
       - on amd64:
         - adwaita-icon-theme
@@ -129,10 +128,24 @@ parts:
         - zlib1g
       - else fail
     override-build: |
-      snapcraftctl build
-      mv $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors $SNAPCRAFT_PART_INSTALL/usr/bin/desktopeditors-old &&
-      sed 's|=onlyoffice-desktopeditors|\=${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $SNAPCRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
-      echo "[Icon Theme]\nInherits=DMZ-Black" > $SNAPCRAFT_PART_INSTALL/usr/share/icons/default/index.theme
+      craftctl default
+      find $CRAFT_PART_INSTALL/ -maxdepth 1 \
+        -not -path $CRAFT_PART_INSTALL/ \
+        -not -path $CRAFT_PART_INSTALL/etc \
+        -not -path $CRAFT_PART_INSTALL/lib \
+        -not -path $CRAFT_PART_INSTALL/lib64 \
+        -not -path $CRAFT_PART_INSTALL/usr \
+        -not -path $CRAFT_PART_INSTALL/var \
+        -exec rm -rf {} \;
+      mkdir -p $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors
+      cp -r * $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors
+      mkdir -p $CRAFT_PART_INSTALL/usr/share/applications
+      mv $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/app/onlyoffice-desktopeditors.desktop $CRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
+      sed 's|=onlyoffice-desktopeditors|\=${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $CRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
+      mkdir -p $CRAFT_PART_INSTALL/usr/share/icons/default
+      echo "[Icon Theme]\nInherits=DMZ-Black" > $CRAFT_PART_INSTALL/usr/share/icons/default/index.theme
+      mkdir -p $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter
+      echo "package=snap" > $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/package.config
       
   gstreamer:
     plugin: nil
@@ -147,10 +160,8 @@ parts:
       - libavcodec58
       - libavfilter7
       - libavformat58
-      - libavresample4
       - libavutil56
       - libcairo-gobject2
-      - libcrystalhd3
       - libde265-0
       - libdv4
       - libfaad2
@@ -163,8 +174,8 @@ parts:
       - libogg0
       - libopenal1
       - libopenal-data
-      - libopencv-core4.2
-      - libopencv-imgproc4.2
+      - libopencv-core4.5d
+      - libopencv-imgproc4.5d
       - libopenjp2-7
       - libpostproc55
       - libslang2
@@ -177,16 +188,16 @@ parts:
       - libv4l-0
       - libva2
       - libvorbis0a
-      - libvpx6
+      - libvpx7
       - libwavpack1
-      - libwebp6
-      - libx264-155
-      - libx265-179
+      - libwebp7
+      - libx264-163
+      - libx265-199
       - libxvidcore4
       - libzvbi0
 
 #    install: |
-#      mv $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t.bin
+#      mv $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t.bin
 
 #  mscore-fonts:
 #    plugin: dump
@@ -198,4 +209,4 @@ parts:
     source: ./bin/
     organize:
       run-desktopeditors.sh: usr/bin/desktopeditors
-#      x2t.sh: $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t
+#      x2t.sh: $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t
