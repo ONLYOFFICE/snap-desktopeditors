@@ -129,16 +129,8 @@ parts:
       - else fail
     override-build: |
       craftctl default
-      find $CRAFT_PART_INSTALL/ -maxdepth 1 \
-        -not -path $CRAFT_PART_INSTALL/ \
-        -not -path $CRAFT_PART_INSTALL/etc \
-        -not -path $CRAFT_PART_INSTALL/lib \
-        -not -path $CRAFT_PART_INSTALL/lib64 \
-        -not -path $CRAFT_PART_INSTALL/usr \
-        -not -path $CRAFT_PART_INSTALL/var \
-        -exec rm -rf {} \;
-      mkdir -p $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors
-      cp -r * $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors
+      mkdir -p $CRAFT_PART_INSTALL/opt/onlyoffice
+      mv $CRAFT_PART_INSTALL/desktopeditors $CRAFT_PART_INSTALL/opt/onlyoffice
       mkdir -p $CRAFT_PART_INSTALL/usr/share/applications
       mv $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/app/onlyoffice-desktopeditors.desktop $CRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
       sed 's|=onlyoffice-desktopeditors|\=${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $CRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
