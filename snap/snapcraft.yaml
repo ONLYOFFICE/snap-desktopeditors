@@ -4,7 +4,7 @@ summary: "An office suite that allowing to create, view and edit local documents
 description: "ONLYOFFICE Desktop Editors is a free office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit documents stored on your Windows/Linux PC or Mac without an Internet connection. It is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx."
 grade: stable
 confinement: strict
-base: core22
+base: core20
 icon: icons/asc-de-256.png
 compression: lzo
 architectures:
@@ -35,7 +35,7 @@ apps:
     command: usr/bin/desktopeditors
     common-id: org.onlyoffice.desktopeditors
     extensions:
-      - gnome
+      - gnome-3-38
     desktop: usr/share/applications/onlyoffice-desktopeditors.desktop
     environment:
       DISABLE_WAYLAND: 1
@@ -128,16 +128,16 @@ parts:
         - zlib1g
       - else fail
     override-build: |
-      craftctl default
-      mkdir -p $CRAFT_PART_INSTALL/opt/onlyoffice
-      mv $CRAFT_PART_INSTALL/desktopeditors $CRAFT_PART_INSTALL/opt/onlyoffice
-      mkdir -p $CRAFT_PART_INSTALL/usr/share/applications
-      mv $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/app/onlyoffice-desktopeditors.desktop $CRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
-      sed 's|=onlyoffice-desktopeditors|\=${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $CRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
-      mkdir -p $CRAFT_PART_INSTALL/usr/share/icons/default
-      echo "[Icon Theme]\nInherits=DMZ-Black" > $CRAFT_PART_INSTALL/usr/share/icons/default/index.theme
-      mkdir -p $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter
-      echo "package=snap" > $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/package.config
+      snapcraftctl build
+      mkdir -p $SNAPCRAFT_PART_INSTALL/opt/onlyoffice
+      mv $SNAPCRAFT_PART_INSTALL/desktopeditors $SNAPCRAFT_PART_INSTALL/opt/onlyoffice
+      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/applications
+      mv $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/app/onlyoffice-desktopeditors.desktop $SNAPCRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
+      sed 's|=onlyoffice-desktopeditors|\=${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $SNAPCRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
+      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/default
+      echo "[Icon Theme]\nInherits=DMZ-Black" > $SNAPCRAFT_PART_INSTALL/usr/share/icons/default/index.theme
+      mkdir -p $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter
+      echo "package=snap" > $SNAPCRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/package.config
       
   gstreamer:
     plugin: nil
@@ -166,8 +166,8 @@ parts:
       - libogg0
       - libopenal1
       - libopenal-data
-      - libopencv-core4.5d
-      - libopencv-imgproc4.5d
+      - libopencv-core4.2
+      - libopencv-imgproc4.2
       - libopenjp2-7
       - libpostproc55
       - libslang2
@@ -180,11 +180,11 @@ parts:
       - libv4l-0
       - libva2
       - libvorbis0a
-      - libvpx7
+      - libvpx6
       - libwavpack1
-      - libwebp7
-      - libx264-163
-      - libx265-199
+      - libwebp6
+      - libx264-155
+      - libx265-179
       - libxvidcore4
       - libzvbi0
 
