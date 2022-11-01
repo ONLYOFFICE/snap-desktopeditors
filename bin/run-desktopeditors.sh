@@ -36,9 +36,18 @@ export XKB_CONFIG_ROOT=$SNAP/usr/share/X11/xkb
 export QT_XKB_CONFIG_ROOT=$SNAP/usr/share/X11/xkb
 
 # XDG Config
-export XDG_CONFIG_HOME=$SNAP_USER_DATA/.config-$SNAP_VERSION
+export XDG_CONFIG_HOME=$SNAP_USER_DATA/.config
 export XDG_CONFIG_DIRS=$SNAP/etc:$XDG_CONFIG_DIRS
 mkdir -p $XDG_CONFIG_HOME
+
+#migrate config
+if [ ! -f $XDG_CONFIG_HOME/onlyoffice/DesktopEditors.conf ]; then
+  mkdir -p $XDG_CONFIG_HOME/onlyoffice
+  LAST_CONFIG=$(ls -a -t $SNAP_USER_DATA | grep .config- | head -1)
+  if [ ! -z "${LAST_CONFIG}" ]; then
+    mv $SNAP_USER_DATA/$LAST_CONFIG/onlyoffice/DesktopEditors.conf $XDG_CONFIG_HOME/onlyoffice
+  fi
+fi
 
 # Note: this doesn't seem to work, QML's LocalStorage either ignores
 # or fails to use $SNAP_USER_DATA if defined here
@@ -114,11 +123,6 @@ export LC_ALL=C.UTF-8
 # Create $XDG_RUNTIME_DIR if it doesn't exist
 if [ ! -d "$XDG_RUNTIME_DIR" ]; then
 	mkdir -p $XDG_RUNTIME_DIR -m 700
-fi
-
-#Copy ibus files for input methods
-if [ -d "$HOME/.config/ibus" ]; then
-  cp -r $HOME/.config/ibus $XDG_CONFIG_HOME
 fi
 
 #Create cache for input methods
