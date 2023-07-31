@@ -39,6 +39,7 @@ apps:
     desktop: usr/share/applications/onlyoffice-desktopeditors.desktop
     environment:
       DISABLE_WAYLAND: 1
+      GI_TYPELIB_PATH: $SNAP/usr/lib/girepository-1.0:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0:$SNAP/gnome-platform/usr/lib/girepository-1.0:$SNAP/gnome-platform/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0
     plugs:
       - audio-playback
       - browser-support
@@ -202,3 +203,13 @@ parts:
     organize:
       run-desktopeditors.sh: usr/bin/desktopeditors
 #      x2t.sh: $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t
+
+  cleanup:
+    after: [onlyoffice-desktopeditors]
+    plugin: nil
+    build-snaps: [core22, gtk-common-themes, gnome-42-2204]
+    override-prime: |
+      set -eux
+      for snap in "core22" "gtk-common-themes" "gnome-42-2204"; do
+        cd "/snap/$snap/current" && find . -type f,l -name *.so* -exec rm -f "$CRAFT_PRIME/{}" \;
+      done

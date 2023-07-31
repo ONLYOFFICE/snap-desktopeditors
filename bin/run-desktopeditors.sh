@@ -72,9 +72,6 @@ mkdir -p $XDG_DATA_HOME
 export XDG_CACHE_HOME=$SNAP_USER_DATA/.cache-$SNAP_VERSION
 mkdir -p $XDG_CACHE_HOME
 
-# Setup GI Repository typelibs (needed as some packages doesn't support multiarch)
-export GI_TYPELIB_PATH=$SNAP/usr/lib/$ARCH/girepository-1.0:$SNAP/usr/lib/girepository-1.0
-
 # Not good, needed for fontconfig and themes
 ln -sf $SNAP/usr/share/{fontconfig,fonts,fonts-*,themes} $XDG_DATA_HOME
 
@@ -91,14 +88,6 @@ fi
 if [ ! -d $XDG_DATA_HOME/mime ]; then
   cp -a $SNAP/usr/share/mime $XDG_DATA_HOME
   $SNAP/usr/bin/update-mime-database $XDG_DATA_HOME/mime
-fi
-
-# Setup GDK pixbuf loaders
-export GDK_PIXBUF_MODULE_FILE=$XDG_CACHE_HOME/gdk-pixbuf-loaders.cache
-export GDK_PIXBUF_MODULEDIR=$SNAP/usr/lib/$ARCH/gdk-pixbuf-2.0/2.10.0/loaders
-
-if [ ! -e $GDK_PIXBUF_MODULE_FILE ]; then
-  $SNAP/usr/lib/$ARCH/gdk-pixbuf-2.0/gdk-pixbuf-query-loaders > $GDK_PIXBUF_MODULE_FILE
 fi
 
 # Keep an array of data dirs, for looping through them
