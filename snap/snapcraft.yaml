@@ -38,8 +38,16 @@ apps:
       - gnome
     desktop: usr/share/applications/onlyoffice-desktopeditors.desktop
     environment:
+      APP_DIR: $SNAP
       DISABLE_WAYLAND: 1
+      FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
+      FONTCONFIG_PATH: $SNAP/etc/fonts/config.d
       GI_TYPELIB_PATH: $SNAP/usr/lib/girepository-1.0:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0:$SNAP/gnome-platform/usr/lib/girepository-1.0:$SNAP/gnome-platform/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0
+      LC_ALL: C.UTF-8
+      LD_LIBRARY_PATH: $SNAP/usr/lib/$ARCH/gtk-3.0/modules:$SNAP/usr/lib/$ARCH/pulseaudio:$SNAP/usr/lib/$ARCH:$SNAP/opt/onlyoffice/desktopeditors:$SNAP/opt/onlyoffice/desktopeditors/converter:$LD_LIBRARY_PATH
+      QT_XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
+      XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
+      LIBGL_DRIVERS_PATH: $SNAP/usr/lib/$ARCH/dri
     plugs:
       - audio-playback
       - browser-support
@@ -189,20 +197,11 @@ parts:
       - libxvidcore4
       - libzvbi0
 
-#    install: |
-#      mv $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t.bin
-
-#  mscore-fonts:
-#    plugin: dump
-#    source: https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
-#    source-type: rpm
-
   starter:
     plugin: dump
     source: ./bin/
     organize:
       run-desktopeditors.sh: usr/bin/desktopeditors
-#      x2t.sh: $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/x2t
 
   cleanup:
     after: [onlyoffice-desktopeditors]
