@@ -147,6 +147,12 @@ parts:
       echo "[Icon Theme]\nInherits=DMZ-Black" > $CRAFT_PART_INSTALL/usr/share/icons/default/index.theme
       mkdir -p $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter
       echo "package=snap" > $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/package.config
+      ##clean
+      #rm -f $CRAFT_PRIME/usr/lib/x86_64-linux-gnu/libtbbmalloc_proxy.so.2*
+      #rm -f $CRAFT_PRIME/usr/lib/x86_64-linux-gnu/libva*
+      #rm -f $CRAFT_PRIME/usr/lib/x86_64-linux-gnu/libwayland-*
+      #rm -f $CRAFT_PRIME/usr/lib/x86_64-linux-gnu/libzvbi-chains.so.0*
+      #cat clean.list | while read f; do rm $CRAFT_PRIME/usr/lib/x86_64-linux-gnu/$f*; done
       
   gstreamer:
     plugin: nil
@@ -202,9 +208,15 @@ parts:
     source: ./bin/
     organize:
       run-desktopeditors.sh: usr/bin/desktopeditors
+  
+  #cleanlist:
+  #  plugin: dump
+  #  source: ./
+  #  organize:
+  #    clean.list: clean.list
 
   cleanup:
-    after: [onlyoffice-desktopeditors]
+    after: [onlyoffice-desktopeditors, gstreamer, cleanlist]
     plugin: nil
     build-snaps: [core22, gtk-common-themes, gnome-42-2204]
     override-prime: |
@@ -212,3 +224,9 @@ parts:
       for snap in "core22" "gtk-common-themes" "gnome-42-2204"; do
         cd "/snap/$snap/current" && find . -type f,l -name *.so* -exec rm -f "$CRAFT_PRIME/{}" \;
       done
+      #ls $CRAFT_PRIME/usr/lib/x86_64-linux-gnu/
+      #wget https://raw.githubusercontent.com/romandemidov/snap-desktopeditors/master/clean.list
+      #cat $CRAFT_PRIME/clean.list | while read f; do rm $CRAFT_PRIME/usr/lib/x86_64-linux-gnu/$f*; done
+      echo $CRAFT_PROJECT_DIR
+      cat $CRAFT_PROJECT_DIR/clean.list | while read f; do rm -f $CRAFT_PRIME/usr/lib/x86_64-linux-gnu/$f*; rm -f $CRAFT_PRIME/lib/x86_64-linux-gnu/$f*; done
+      #cat $CRAFT_PROJECT_DIR/clean.list | while read f; do rm -f $CRAFT_PRIME/lib/x86_64-linux-gnu/$f*; done
