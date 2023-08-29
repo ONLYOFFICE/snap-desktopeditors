@@ -48,6 +48,7 @@ apps:
       QT_XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
       XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
       LIBGL_DRIVERS_PATH: $SNAP/usr/lib/$ARCH/dri
+      LIBGL_ALWAYS_INDIRECT: 1
     plugs:
       - audio-playback
       - browser-support
