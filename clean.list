@@ -48,6 +48,7 @@ libQt5QmlModels.so.5
 libQt5XcbQpa.so.5
 librt.so.1
 libsphinxad.so.3
+libtbb.so.2
 libtbbmalloc_proxy.so.2
 libtbbmalloc.so.2
 libthread_db.so.1
