@@ -93,7 +93,6 @@ parts:
         - libflac8
         - libgail-3-0
         - libgcc1
-        - libgconf-2-4
         - libgcrypt20
         - libgl1-mesa-dri
         - libglib2.0-0
