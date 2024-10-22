@@ -139,11 +139,6 @@ parts:
       - else fail
     override-build: |
       craftctl default
-      mkdir -p $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors
-      mv $CRAFT_PART_INSTALL/??????* app fonts $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors
-      mkdir -p $CRAFT_PART_INSTALL/usr/share/applications
-      mv $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/app/onlyoffice-desktopeditors.desktop $CRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
-      sed 's|=onlyoffice-desktopeditors|\=${SNAP}/opt/onlyoffice/desktopeditors/asc-de-256.png|g' -i $CRAFT_PART_INSTALL/usr/share/applications/onlyoffice-desktopeditors.desktop
       mkdir -p $CRAFT_PART_INSTALL/usr/share/icons/default
       echo "[Icon Theme]\nInherits=DMZ-Black" > $CRAFT_PART_INSTALL/usr/share/icons/default/index.theme
       mkdir -p $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter
