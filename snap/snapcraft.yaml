@@ -78,7 +78,7 @@ apps:
 parts:
   onlyoffice-desktopeditors:
     plugin: dump
-    source: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors-8.2.0-x64.tar.xz
+    source: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors-${SNAPCRAFT_PROJECT_VERSION}-x64.tar.xz
     stage-packages:
       - on amd64:
         - adwaita-icon-theme
