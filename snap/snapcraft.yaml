@@ -1,0 +1,221 @@
+name: onlyoffice-desktopeditors
+title: ONLYOFFICE Desktop Editors
+version: "8.2.0"
+summary: "An office suite that allowing to create, view and edit local documents."
+description: |
+  ONLYOFFICE Desktop Editors is a free and open-source office suite pack that comprises editors for text documents, spreadsheets, presentations, PDFs and PDF forms. It allows you to create, view and edit office docs stored on your Windows/Linux PC or Mac without an Internet connection. The suite is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx.
+
+  Thanks to the tab-based user interface, you can deal with multiple files within one and the same window. Multiple plugins allow adding any extra functionality you might need. Password protection and digital signatures ensure a higher level of security while working with files.
+
+  Switch between various interface themes to comfortably work in any environment. Extend your editing capabilities by using plugins: work faster with the AI helper, translate, recognize text from pictures, convert your docs to Markdown, etc.
+
+  Along with offline work, it’s possible to connect the application to the cloud for online document collaboration. Available options include ONLYOFFICE cloud, Moodle, Nextcloud, Seafile, ownCloud, kDrive, and Liferay.
+grade: stable
+confinement: strict
+base: core22
+icon: icons/asc-de-256.png
+compression: lzo
+architectures:
+  - amd64
+website: https://www.onlyoffice.com
+contact: https://forum.onlyoffice.com
+issues: https://github.com/ONLYOFFICE/snap-desktopeditors/issues
+source-code: https://github.com/ONLYOFFICE/snap-desktopeditors
+
+layout:
+  /etc/fonts:
+    bind: $SNAP/etc/fonts
+  /usr/share/icons:
+    bind: $SNAP/usr/share/icons
+  /usr/bin/wget:
+    bind-file: $SNAP/usr/bin/wget
+  /usr/lib/x86_64-linux-gnu/libpsl.so.5:
+    symlink: $SNAP/usr/lib/x86_64-linux-gnu/libpsl.so.5
+
+plugs:
+  gtk-3-themes:
+    interface: content
+    target: $SNAP/share/themes
+    default-provider: gtk-common-themes
+  cups-relation:
+    interface: content
+    target: $SNAP
+    default-provider: cups
+
+apps:
+  onlyoffice-desktopeditors:
+    command: usr/bin/desktopeditors
+    common-id: org.onlyoffice.desktopeditors
+    extensions:
+      - gnome
+    desktop: usr/share/applications/onlyoffice-desktopeditors.desktop
+    environment:
+      APP_DIR: $SNAP
+      DISABLE_WAYLAND: 1
+      FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
+      FONTCONFIG_PATH: $SNAP/etc/fonts/config.d
+      GI_TYPELIB_PATH: $SNAP/usr/lib/girepository-1.0:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0:$SNAP/gnome-platform/usr/lib/girepository-1.0:$SNAP/gnome-platform/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0
+      LC_ALL: C.UTF-8
+      LD_LIBRARY_PATH: $SNAP/usr/lib/$ARCH/gtk-3.0/modules:$SNAP/usr/lib/$ARCH/pulseaudio:$SNAP/usr/lib/$ARCH:$SNAP/opt/onlyoffice/desktopeditors:$SNAP/opt/onlyoffice/desktopeditors/converter:$LD_LIBRARY_PATH
+      QT_XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
+      XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
+      LIBGL_DRIVERS_PATH: $SNAP/usr/lib/$ARCH/dri
+      LIBGL_ALWAYS_INDIRECT: 1
+    plugs:
+      - audio-playback
+      - browser-support
+      - cups
+      - desktop
+      - gsettings
+      - home
+      - locale-control
+      - network
+      - opengl
+      - removable-media
+      - unity7
+      - x11
+
+parts:
+  onlyoffice-desktopeditors:
+    plugin: dump
+    source: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors-${SNAPCRAFT_PROJECT_VERSION}-x64.tar.xz
+    stage-packages:
+      - on amd64:
+        - adwaita-icon-theme
+        - curl
+        - dmz-cursor-theme
+        - fcitx-frontend-gtk3
+        - fonts-crosextra-carlito
+        - fonts-dejavu
+        - fonts-liberation
+        - fonts-opensymbol
+        - fonts-takao-gothic
+        - gsettings-desktop-schemas
+        - gsettings-ubuntu-schemas
+        - ibus-gtk3
+        - libasyncns0
+        - libatk-adaptor
+        - libc6
+        - libcairo2
+        - libcanberra-gtk3-module
+        - libcomerr2
+        - libcurl4
+        - libcurl3-gnutls
+        - libffi7
+        - libflac8
+        - libgail-3-0
+        - libgcc1
+        - libgcrypt20
+        - libgl1-mesa-dri
+        - libglib2.0-0
+        - libgpg-error0
+        - libgsettings-qt1
+        - libgstreamer-plugins-base1.0-0
+        - libgstreamer1.0-0
+        - libgtk-3-0
+        - libgtk-3-bin
+        - libgtkglext1
+        - liblzma5
+        - libnss3
+        - liborc-0.4-0
+        - libpcre3
+        - libpulse0
+        - libqt5qml5
+        - libqt5quick5
+        - libselinux1
+        - libsndfile1
+        - libstdc++6
+        - libsystemd0
+        - libuuid1
+        - libvorbisenc2
+        - libxcb-icccm4
+        - libxcb-image0
+        - libxcb-keysyms1
+        - libxcb-randr0
+        - libxcb-render-util0
+        - libxcb-shape0
+        - libxcb-util1
+        - libxcb-xkb1
+        - libxkbcommon-x11-0
+        - libxml2
+        - libxss1
+        - locales-all
+        - overlay-scrollbar-gtk2
+        - packagekit-gtk3-module
+        - ttf-mscorefonts-installer
+        - unity-gtk2-module
+        - wget
+        - x11-common
+        - zlib1g
+      - else fail
+    override-build: |
+      craftctl default
+      mkdir -p $CRAFT_PART_INSTALL/usr/share/icons/default
+      echo "[Icon Theme]\nInherits=DMZ-Black" > $CRAFT_PART_INSTALL/usr/share/icons/default/index.theme
+      mkdir -p $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter
+      echo "package=snap" > $CRAFT_PART_INSTALL/opt/onlyoffice/desktopeditors/converter/package.config
+      
+  gstreamer:
+    plugin: nil
+    stage-packages:
+      - gstreamer1.0-gtk3
+      - gstreamer1.0-libav
+      - gstreamer1.0-plugins-bad
+      - gstreamer1.0-plugins-base
+      - gstreamer1.0-plugins-good
+      - gstreamer1.0-pulseaudio
+      - gstreamer1.0-x
+      - libavcodec58
+      - libavfilter7
+      - libavformat58
+      - libavutil56
+      - libcairo-gobject2
+      - libde265-0
+      - libdv4
+      - libfaad2
+      - libffi7
+      - libgpm2
+      - libgstreamer-plugins-bad1.0-0
+      - libgstreamer-plugins-good1.0-0
+      - libmp3lame0
+      - libmodplug1
+      - libogg0
+      - libopenal1
+      - libopenal-data
+      - libopencv-core4.5d
+      - libopencv-imgproc4.5d
+      - libopenjp2-7
+      - libpostproc55
+      - libslang2
+      - libsnappy1v5
+      - libsoxr0
+      - libswresample3
+      - libswscale5
+      - libtheora0
+      - libtwolame0
+      - libv4l-0
+      - libva2
+      - libvorbis0a
+      - libvpx7
+      - libwavpack1
+      - libwebp7
+      - libx264-163
+      - libx265-199
+      - libxvidcore4
+      - libzvbi0
+
+  starter:
+    plugin: dump
+    source: ./bin/
+    organize:
+      run-desktopeditors.sh: usr/bin/desktopeditors
+
+  cleanup:
+    after: [onlyoffice-desktopeditors]
+    plugin: nil
+    build-snaps: [core22, gtk-common-themes, gnome-42-2204]
+    override-prime: |
+      set -eux
+      for snap in "core22" "gtk-common-themes" "gnome-42-2204"; do
+        cd "/snap/$snap/current" && find . -type f,l -name *.so* -exec rm -f "$CRAFT_PRIME/{}" \;
+      done
