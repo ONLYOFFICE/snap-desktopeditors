@@ -1,5 +1,7 @@
 name: Build and publish SNAP package
 
+run-name: Build ONLYOFFICE_DesktopEditors-${{ github.event.inputs.version }}-${{ github.event.inputs.build }}
+
 on:
   workflow_dispatch:
     inputs:
