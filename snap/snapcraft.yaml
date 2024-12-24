@@ -9,7 +9,7 @@ description: |
 
   Switch between various interface themes to comfortably work in any environment. Extend your editing capabilities by using plugins: work faster with the AI helper, translate, recognize text from pictures, convert your docs to Markdown, etc.
 
-  Along with offline work, it’s possible to connect the application to the cloud for online document collaboration. Available options include ONLYOFFICE cloud, Moodle, Nextcloud, Seafile, ownCloud, kDrive, and Liferay.
+  Along with offline work, it's possible to connect the application to the cloud for online document collaboration. Available options include ONLYOFFICE cloud, Moodle, Nextcloud, Seafile, ownCloud, kDrive, and Liferay.
 grade: stable
 confinement: strict
 base: core22
