@@ -16,7 +16,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
     - name: Check out Git repository
       uses: actions/checkout@v4
@@ -44,6 +44,13 @@ jobs:
       with:
         snap: ${{ steps.build.outputs.snap }}
         release: beta
+
+    - name: Notice for revision
+      run: |
+        REVISION=$(cat /home/runner/runners/*/_diag/pages/*.log | grep Revision | awk '{print $3}')
+        for STR in $REVISION; do
+          echo "::notice::Snap published to revision $STR"
+        done
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
