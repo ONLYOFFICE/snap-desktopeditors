@@ -52,10 +52,3 @@ jobs:
           echo "::notice::Snap published to revision $STR"
         done
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: ONLYOFFICE_DesktopEditors-${{ github.event.inputs.version }}-${{ github.event.inputs.build }}
-        path: ${{ steps.build.outputs.snap }}
-        retention-days: 14
-
