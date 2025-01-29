@@ -2,6 +2,11 @@
 
 ARCH=x86_64-linux-gnu
 
+#remove gnome-platform from path
+if [ "$(basename $SNAP)" = "gnome-platform" ]; then
+  SNAP=$(dirname $SNAP)
+fi
+
 THEME=`gsettings get org.gnome.desktop.interface gtk-theme`
 case $THEME in
   *"Adwaita"*) ;;
@@ -101,7 +106,7 @@ fi
 #Create cache for input methods
 export GTK_IM_MODULE_FILE=$XDG_CACHE_HOME/immodules.cache
 if [ ! -f $GTK_IM_MODULE_FILE ]; then
-  $SNAP/usr/lib/x86_64-linux-gnu/libgtk-3-0/gtk-query-immodules-3.0 --update-cache
+  $SNAP/usr/lib/x86_64-linux-gnu/libgtk-3-0t64/gtk-query-immodules-3.0 --update-cache
 fi
 
 unset SESSION_MANAGER

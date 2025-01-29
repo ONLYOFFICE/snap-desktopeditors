@@ -12,11 +12,13 @@ description: |
   Along with offline work, it's possible to connect the application to the cloud for online document collaboration. Available options include ONLYOFFICE cloud, Moodle, Nextcloud, Seafile, ownCloud, kDrive, and Liferay.
 grade: stable
 confinement: strict
-base: core22
+base: core24
 icon: icons/asc-de-256.png
 compression: lzo
-architectures:
-  - amd64
+platforms:
+  amd64:
+    build-on: [amd64]
+    build-for: [amd64]
 website: https://www.onlyoffice.com
 contact: https://forum.onlyoffice.com
 issues: https://github.com/ONLYOFFICE/snap-desktopeditors/issues
@@ -54,12 +56,12 @@ apps:
       DISABLE_WAYLAND: 1
       FONTCONFIG_FILE: $SNAP/etc/fonts/fonts.conf
       FONTCONFIG_PATH: $SNAP/etc/fonts/config.d
-      GI_TYPELIB_PATH: $SNAP/usr/lib/girepository-1.0:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0:$SNAP/gnome-platform/usr/lib/girepository-1.0:$SNAP/gnome-platform/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0
+      GI_TYPELIB_PATH: $SNAP/usr/lib/girepository-1.0:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/girepository-1.0:$SNAP/gnome-platform/usr/lib/girepository-1.0:$SNAP/gnome-platform/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/girepository-1.0
       LC_ALL: C.UTF-8
-      LD_LIBRARY_PATH: $SNAP/usr/lib/$ARCH/gtk-3.0/modules:$SNAP/usr/lib/$ARCH/pulseaudio:$SNAP/usr/lib/$ARCH:$SNAP/opt/onlyoffice/desktopeditors:$SNAP/opt/onlyoffice/desktopeditors/converter:$LD_LIBRARY_PATH
+      LD_LIBRARY_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/gtk-3.0/modules:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pulseaudio:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$SNAP/opt/onlyoffice/desktopeditors:$SNAP/opt/onlyoffice/desktopeditors/converter:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:$LD_LIBRARY_PATH
       QT_XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
       XKB_CONFIG_ROOT: $SNAP/usr/share/X11/xkb
-      LIBGL_DRIVERS_PATH: $SNAP/usr/lib/$ARCH/dri
+      LIBGL_DRIVERS_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/dri
       LIBGL_ALWAYS_INDIRECT: 1
     plugs:
       - audio-playback
@@ -101,13 +103,13 @@ parts:
         - libcomerr2
         - libcurl4
         - libcurl3-gnutls
-        - libffi7
-        - libflac8
+        - libffi8
+        - libflac12t64
         - libgail-3-0
         - libgcc1
         - libgcrypt20
         - libgl1-mesa-dri
-        - libglib2.0-0
+        - libglib2.0-0t64
         - libgpg-error0
         - libgsettings-qt1
         - libgstreamer-plugins-base1.0-0
@@ -119,9 +121,8 @@ parts:
         - libnss3
         - liborc-0.4-0
         - libpcre3
+        - libproxy1v5
         - libpulse0
-        - libqt5qml5
-        - libqt5quick5
         - libselinux1
         - libsndfile1
         - libstdc++6
@@ -165,15 +166,15 @@ parts:
       - gstreamer1.0-plugins-good
       - gstreamer1.0-pulseaudio
       - gstreamer1.0-x
-      - libavcodec58
-      - libavfilter7
-      - libavformat58
-      - libavutil56
+      - libavcodec60
+      - libavfilter9
+      - libavformat60
+      - libavutil58
       - libcairo-gobject2
       - libde265-0
       - libdv4
       - libfaad2
-      - libffi7
+      - libffi8
       - libgpm2
       - libgstreamer-plugins-bad1.0-0
       - libgstreamer-plugins-good1.0-0
@@ -182,24 +183,24 @@ parts:
       - libogg0
       - libopenal1
       - libopenal-data
-      - libopencv-core4.5d
-      - libopencv-imgproc4.5d
+      - libopencv-core406t64
+      - libopencv-imgproc406t64
       - libopenjp2-7
-      - libpostproc55
+      - libpostproc57
       - libslang2
       - libsnappy1v5
       - libsoxr0
-      - libswresample3
-      - libswscale5
+      - libswresample4
+      - libswscale7
       - libtheora0
       - libtwolame0
       - libv4l-0
       - libva2
       - libvorbis0a
-      - libvpx7
+      - libvpx9
       - libwavpack1
       - libwebp7
-      - libx264-163
+      - libx264-164
       - libx265-199
       - libxvidcore4
       - libzvbi0
@@ -213,9 +214,9 @@ parts:
   cleanup:
     after: [onlyoffice-desktopeditors]
     plugin: nil
-    build-snaps: [core22, gtk-common-themes, gnome-42-2204]
+    build-snaps: [core24, gtk-common-themes, gnome-42-2204]
     override-prime: |
       set -eux
-      for snap in "core22" "gtk-common-themes" "gnome-42-2204"; do
+      for snap in "core24" "gtk-common-themes" "gnome-42-2204"; do
         cd "/snap/$snap/current" && find . -type f,l -name *.so* -exec rm -f "$CRAFT_PRIME/{}" \;
       done
