@@ -2,11 +2,6 @@
 
 ARCH=x86_64-linux-gnu
 
-#remove gnome-platform from path
-if [ "$(basename $SNAP)" = "gnome-platform" ]; then
-  SNAP=$(dirname $SNAP)
-fi
-
 THEME=`gsettings get org.gnome.desktop.interface gtk-theme`
 case $THEME in
   *"Adwaita"*) ;;
