@@ -1,7 +1,7 @@
 [![License](https://img.shields.io/badge/License-GNU%20AGPL%20V3-green.svg?style=flat)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 [![ONLYOFFICE Desktop Editors](https://snapcraft.io/onlyoffice-desktopeditors/badge.svg)](https://snapcraft.io/onlyoffice-desktopeditors)
 
-## Overview
+## Overview  1
 
 ONLYOFFICE Desktop Editors is a free office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit documents stored on your Windows/Linux PC or Mac without an Internet connection. It is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx.
 
