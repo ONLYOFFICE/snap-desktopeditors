@@ -85,7 +85,7 @@ parts:
     plugin: dump
     source:
       - to amd64: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors-${SNAPCRAFT_PROJECT_VERSION}-x64.tar.xz
-      - to arm64: https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com/desktop/linux/generic/onlyoffice-desktopeditors-${SNAPCRAFT_PROJECT_VERSION}-31-aarch64.tar.xz
+      - to arm64: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors-${SNAPCRAFT_PROJECT_VERSION}-arm64.tar.xz
     stage-packages:
       - adwaita-icon-theme
       - curl

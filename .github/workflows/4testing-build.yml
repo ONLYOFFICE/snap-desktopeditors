@@ -29,9 +29,10 @@ jobs:
         #replace version
         sed -i -r "/version:/s/([0-9]+).([0-9]+).([0-9]+)/${VERSION}/" ./snap/snapcraft.yaml
         #replace link to archive to test
-        sed -i -e '/source:/s|http://download.onlyoffice.com/install|https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com|' ./snap/snapcraft.yaml
-        sed -i -e '/source:/s|editors/linux|linux/generic|' ./snap/snapcraft.yaml
-        sed -i -e "/source:/s|-x64|-${BUILD_NUMBER}-x86_64|" ./snap/snapcraft.yaml
+        sed -i -e '/to amd64:\|to arm64:/s|http://download.onlyoffice.com/install|https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com|' ./snap/snapcraft.yaml
+        sed -i -e '/to amd64:\|to arm64:/s|editors/linux|linux/generic|' ./snap/snapcraft.yaml
+        sed -i -e "/to amd64:/s|-x64|-${BUILD_NUMBER}-x86_64|" ./snap/snapcraft.yaml
+        sed -i -e "/to arm64:/s|-arm64|-${BUILD_NUMBER}-aarch64|" ./snap/snapcraft.yaml
 
     - name: Build snap
       uses: snapcore/action-build@v1
