@@ -152,7 +152,6 @@ parts:
       - wget
       - x11-common
       - zlib1g
-      - else fail
     override-build: |
       craftctl default
       mkdir -p $CRAFT_PART_INSTALL/usr/share/icons/default
