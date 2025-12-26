@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ARCH=x86_64-linux-gnu
+ARCH=$CRAFT_ARCH_TRIPLET_BUILD_FOR
 
 THEME=`gsettings get org.gnome.desktop.interface gtk-theme`
 case $THEME in
@@ -101,7 +101,7 @@ fi
 #Create cache for input methods
 export GTK_IM_MODULE_FILE=$XDG_CACHE_HOME/immodules.cache
 if [ ! -f $GTK_IM_MODULE_FILE ]; then
-  $SNAP/usr/lib/x86_64-linux-gnu/libgtk-3-0t64/gtk-query-immodules-3.0 --update-cache
+  $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libgtk-3-0t64/gtk-query-immodules-3.0 --update-cache
 fi
 
 unset SESSION_MANAGER
