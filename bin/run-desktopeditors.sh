@@ -4,7 +4,7 @@ echo "RFX: env : START"
 env
 echo "RFX: env : END"
 
-ARCH=$CRAFT_ARCH_TRIPLET_BUILD_FOR
+ARCH=$SNAP_LAUNCHER_ARCH_TRIPLET
 
 THEME=`gsettings get org.gnome.desktop.interface gtk-theme`
 case $THEME in
