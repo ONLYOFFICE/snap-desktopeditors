@@ -19,6 +19,9 @@ platforms:
   amd64:
     build-on: [amd64]
     build-for: [amd64]
+  arm64:
+    build-on: [arm64]
+    build-for: [arm64]
 website: https://www.onlyoffice.com
 contact: https://forum.onlyoffice.com
 issues: https://github.com/ONLYOFFICE/snap-desktopeditors/issues
@@ -31,8 +34,8 @@ layout:
     bind: $SNAP/usr/share/icons
   /usr/bin/wget:
     bind-file: $SNAP/usr/bin/wget
-  /usr/lib/x86_64-linux-gnu/libpsl.so.5:
-    symlink: $SNAP/usr/lib/x86_64-linux-gnu/libpsl.so.5
+  /usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libpsl.so.5:
+    symlink: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libpsl.so.5
 
 plugs:
   gtk-3-themes:
@@ -80,75 +83,75 @@ apps:
 parts:
   onlyoffice-desktopeditors:
     plugin: dump
-    source: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors-${SNAPCRAFT_PROJECT_VERSION}-x64.tar.xz
+    source:
+      - to amd64: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors-${SNAPCRAFT_PROJECT_VERSION}-x64.tar.xz
+      - to arm64: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors-${SNAPCRAFT_PROJECT_VERSION}-aarch64.tar.xz
     stage-packages:
-      - on amd64:
-        - adwaita-icon-theme
-        - curl
-        - dmz-cursor-theme
-        - fcitx-frontend-gtk3
-        - fonts-crosextra-carlito
-        - fonts-dejavu
-        - fonts-liberation
-        - fonts-opensymbol
-        - fonts-takao-gothic
-        - gsettings-desktop-schemas
-        - gsettings-ubuntu-schemas
-        - ibus-gtk3
-        - libasyncns0
-        - libatk-adaptor
-        - libc6
-        - libcairo2
-        - libcanberra-gtk3-module
-        - libcomerr2
-        - libcurl4
-        - libcurl3-gnutls
-        - libffi8
-        - libflac12t64
-        - libgail-3-0
-        - libgcc1
-        - libgcrypt20
-        - libgl1-mesa-dri
-        - libglib2.0-0t64
-        - libgpg-error0
-        - libgsettings-qt1
-        - libgstreamer-plugins-base1.0-0
-        - libgstreamer1.0-0
-        - libgtk-3-0
-        - libgtk-3-bin
-        - libgtkglext1
-        - liblzma5
-        - libnss3
-        - liborc-0.4-0
-        - libpcre3
-        - libproxy1v5
-        - libpulse0
-        - libselinux1
-        - libsndfile1
-        - libstdc++6
-        - libsystemd0
-        - libuuid1
-        - libvorbisenc2
-        - libxcb-icccm4
-        - libxcb-image0
-        - libxcb-keysyms1
-        - libxcb-randr0
-        - libxcb-render-util0
-        - libxcb-shape0
-        - libxcb-util1
-        - libxcb-xkb1
-        - libxkbcommon-x11-0
-        - libxml2
-        - libxss1
-        - locales-all
-        - overlay-scrollbar-gtk2
-        - packagekit-gtk3-module
-        - ttf-mscorefonts-installer
-        - unity-gtk2-module
-        - wget
-        - x11-common
-        - zlib1g
-      - else fail
+      - adwaita-icon-theme
+      - curl
+      - dmz-cursor-theme
+      - fcitx-frontend-gtk3
+      - fonts-crosextra-carlito
+      - fonts-dejavu
+      - fonts-liberation
+      - fonts-opensymbol
+      - fonts-takao-gothic
+      - gsettings-desktop-schemas
+      - gsettings-ubuntu-schemas
+      - ibus-gtk3
+      - libasyncns0
+      - libatk-adaptor
+      - libc6
+      - libcairo2
+      - libcanberra-gtk3-module
+      - libcomerr2
+      - libcurl4
+      - libcurl3-gnutls
+      - libffi8
+      - libflac12t64
+      - libgail-3-0
+      - libgcc1
+      - libgcrypt20
+      - libgl1-mesa-dri
+      - libglib2.0-0t64
+      - libgpg-error0
+      - libgsettings-qt1
+      - libgstreamer-plugins-base1.0-0
+      - libgstreamer1.0-0
+      - libgtk-3-0
+      - libgtk-3-bin
+      - libgtkglext1
+      - liblzma5
+      - libnss3
+      - liborc-0.4-0
+      - libpcre3
+      - libproxy1v5
+      - libpulse0
+      - libselinux1
+      - libsndfile1
+      - libstdc++6
+      - libsystemd0
+      - libuuid1
+      - libvorbisenc2
+      - libxcb-icccm4
+      - libxcb-image0
+      - libxcb-keysyms1
+      - libxcb-randr0
+      - libxcb-render-util0
+      - libxcb-shape0
+      - libxcb-util1
+      - libxcb-xkb1
+      - libxkbcommon-x11-0
+      - libxml2
+      - libxss1
+      - locales-all
+      - overlay-scrollbar-gtk2
+      - packagekit-gtk3-module
+      - ttf-mscorefonts-installer
+      - unity-gtk2-module
+      - wget
+      - x11-common
+      - zlib1g
     override-build: |
       craftctl default
       mkdir -p $CRAFT_PART_INSTALL/usr/share/icons/default
