@@ -1,6 +1,6 @@
 name: onlyoffice-desktopeditors
 title: ONLYOFFICE Desktop Editors
-version: "9.2.1"
+version: "9.2.0"
 summary: "An office suite that allowing to create, view and edit local documents."
 description: |
   ONLYOFFICE Desktop Editors is a free and open-source office suite pack that comprises editors for text documents, spreadsheets, presentations, PDFs and PDF forms. It allows you to create, view and edit office docs stored on your Windows/Linux PC or Mac without an Internet connection. The suite is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx.
@@ -85,7 +85,7 @@ parts:
     plugin: dump
     source:
       - to amd64: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors-${SNAPCRAFT_PROJECT_VERSION}-x64.tar.xz
-      - to arm64: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors-${SNAPCRAFT_PROJECT_VERSION}-arm64.tar.xz
+      - to arm64: http://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors-${SNAPCRAFT_PROJECT_VERSION}-aarch64.tar.xz
     stage-packages:
       - adwaita-icon-theme
       - curl

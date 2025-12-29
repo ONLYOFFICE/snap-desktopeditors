@@ -1,9 +1,5 @@
 #!/bin/bash
 
-echo "RFX: env : START"
-env
-echo "RFX: env : END"
-
 ARCH=$SNAP_LAUNCHER_ARCH_TRIPLET
 
 THEME=`gsettings get org.gnome.desktop.interface gtk-theme`
