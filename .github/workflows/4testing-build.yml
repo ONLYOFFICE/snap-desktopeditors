@@ -15,7 +15,7 @@ on:
         required: true
 
 jobs:
-  build:
+  build_amd64:
     runs-on: ubuntu-24.04
     steps:
     - name: Check out Git repository
@@ -29,9 +29,9 @@ jobs:
         #replace version
         sed -i -r "/version:/s/([0-9]+).([0-9]+).([0-9]+)/${VERSION}/" ./snap/snapcraft.yaml
         #replace link to archive to test
-        sed -i -e '/source:/s|http://download.onlyoffice.com/install|https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com|' ./snap/snapcraft.yaml
-        sed -i -e '/source:/s|editors/linux|linux/generic|' ./snap/snapcraft.yaml
-        sed -i -e "/source:/s|-x64|-${BUILD_NUMBER}-x86_64|" ./snap/snapcraft.yaml
+        sed -i -e '/to amd64:/s|http://download.onlyoffice.com/install|https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com|' ./snap/snapcraft.yaml
+        sed -i -e '/to amd64:/s|editors/linux|linux/generic|' ./snap/snapcraft.yaml
+        sed -i -e "/to amd64:/s|-x64|-${BUILD_NUMBER}-x86_64|" ./snap/snapcraft.yaml
 
     - name: Build snap
       uses: snapcore/action-build@v1
@@ -52,3 +52,39 @@ jobs:
           echo "::notice::Snap published to revision $STR"
         done
 
+  build_arm64:
+    runs-on: ubuntu-24.04-arm
+    steps:
+    - name: Check out Git repository
+      uses: actions/checkout@v4
+
+    - name: Replace Version and Build Number
+      id: repl
+      run: |
+        VERSION=${{ github.event.inputs.version }}
+        BUILD_NUMBER=${{ github.event.inputs.build }}
+        #replace version
+        sed -i -r "/version:/s/([0-9]+).([0-9]+).([0-9]+)/${VERSION}/" ./snap/snapcraft.yaml
+        #replace link to archive to test
+        sed -i -e '/to arm64:/s|http://download.onlyoffice.com/install|https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com|' ./snap/snapcraft.yaml
+        sed -i -e '/to arm64:/s|editors/linux|linux/generic|' ./snap/snapcraft.yaml
+        sed -i -e "/to arm64:/s|-aarch64|-${BUILD_NUMBER}-aarch64|" ./snap/snapcraft.yaml
+
+    - name: Build snap
+      uses: snapcore/action-build@v1
+      id: build
+
+    - name: Publish snap
+      uses: snapcore/action-publish@v1
+      env:
+        SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
+      with:
+        snap: ${{ steps.build.outputs.snap }}
+        release: beta
+
+    - name: Notice for revision
+      run: |
+        REVISION=$(cat /home/runner/actions-runner/*/_diag/pages/*.log | grep Revision | awk '{print $3}')
+        for STR in $REVISION; do
+          echo "::notice::Snap published to revision $STR"
+        done
