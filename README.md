@@ -1,73 +1,95 @@
 [![License](https://img.shields.io/badge/License-GNU%20AGPL%20V3-green.svg?style=flat)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 [![ONLYOFFICE Desktop Editors](https://snapcraft.io/onlyoffice-desktopeditors/badge.svg)](https://snapcraft.io/onlyoffice-desktopeditors)
 
-## Overview
+<h1>Snap for ONLYOFFICE Desktop Editors</h1>
 
-ONLYOFFICE Desktop Editors is a free office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit documents stored on your Windows/Linux PC or Mac without an Internet connection. It is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx.
+Welcome to the official Snap package for [ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/desktop?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnapDesktop)\! This repo provides everything you need to easily install a free office suite on your machine using Snap.
 
-## Functionality
+## **What is ONLYOFFICE Desktop Editors?**
 
-ONLYOFFICE Desktop Editors include the following editors:
+[ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/desktop?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnapDesktop) is a free, open-source office suite pack that allows you to create, view and edit office docs stored on your PC without an Internet connection. Along with offline work, it’s possible to connect the application to the cloud for online document collaboration. It’s fully compatible with Microsoft Office formats (DOCX, XLSX, PPTX) and provides a complete set of tools for all your document needs.
 
-* ONLYOFFICE Document Editor
-* ONLYOFFICE Spreadsheet Editor
-* ONLYOFFICE Presentation Editor
- 
-The editors allow you to create, edit, save and export text, spreadsheet and presentation documents.
+The suite includes:
 
-## Installing ONLYOFFICE Desktop Editors using Snapcraft command line tool
+* **✍️ [Document Editor](https://www.onlyoffice.com/word-processor?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnapDesktop):** For creating and formatting text documents of any complexity.  
+* **📊 [Spreadsheet Editor](https://www.onlyoffice.com/sheets?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnapDesktop):** For managing and analyzing data with powerful tools, formulas, and charts.  
+* **🖥️ [Presentation Editor](https://www.onlyoffice.com/slides?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnapDesktop):** For designing stunning, professional presentations with a variety of creative tools.  
+* **📝 [Form Creator](https://www.onlyoffice.com/form-creator?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnapDesktop):** For building and filling out complex, fillable PDF forms.  
+* **✂️ [PDF Editor](https://www.onlyoffice.com/pdf-editor?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnapDesktop):** For viewing, annotating, and converting your PDF files.  
+* **🖼️ [Diagram Viewer](https://www.onlyoffice.com/diagram-viewer?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnapDesktop):** For viewing diagrams and flowcharts from Visio and other popular formats.
 
-ONLYOFFICE Desktop Editors are available in [Snapcraft store](https://snapcraft.io/onlyoffice-desktopeditors) as a snap package. A snap contains all the dependencies to run the application. To use it, all you need is snapd, a system to install and manage snaps. Snapd is included into most of modern distributions. You only need to either enable or install it. See the [official snap project page](https://docs.snapcraft.io/core/install) for the snapd installation instructions.
+### AI integration 🤖
 
-For example, to install snapd under Ubuntu you need to run the commands:
+Connect any AI model (local or cloud-based) for tasks like chatbot requests, translation, OCR, etc. Use AI agents to generate new files, list folder contents, preview file details without opening them in the editor, auto-fill forms with provided data, etc. [More info about AI tools](https://www.onlyoffice.com/ai-assistants?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnapDesktop)
 
+## **How to install with Snap using the Snapcraft command line tool 🛠️**
+
+Getting started is easy\! A snap package for ONLYOFFICE Desktop Editors is available in the [Snapcraft Store](https://snapcraft.io/onlyoffice-desktopeditors).
+
+Snaps contain all the necessary dependencies, so you just need to have ```snapd``` installed on your system.
+
+### **Step 1: Check for and install ```snapd```**
+
+Most modern Linux distributions come with ```snapd``` pre-installed. You can check if it's running by typing ```snap \--version``` in your terminal.
+
+If it's not installed, you can easily add it. For example, on Ubuntu and other Debian-based distros, run the following commands. The first command updates your package list, and the second installs ```snapd```.
 ```
-# apt update
+# apt update  
 # apt install snapd
 ```
+For instructions on other Linux distributions, please visit the [official Snapcraft documentation](https://snapcraft.io/docs/installing-snapd).
 
-Now the editors can be easily installed using the following command:
+### **Step 2: Install ONLYOFFICE Desktop Editors**
+
+Once ```snapd``` is ready, you can install the editors with a single command. This will download and install the latest stable version from the Snap Store.
 
 ```
 # snap install onlyoffice-desktopeditors
 ```
 
-## Running ONLYOFFICE Desktop Editors
+That's it\! The application is now installed and ready to use.
 
-Once the installation is over, you can run the editors using the terminal command:
+## **How to run the editors ▶️**
 
-```
-$ snap run onlyoffice-desktopeditors
-```
+You can launch the editors in two ways:
 
-In case you prefer to use graphical user interface, you can always find the editors in your computer Application menu - Office - ONLYOFFICE.
+1. From the terminal:
+   ```
+   $ snap run onlyoffice-desktopeditors
+   ```
 
-## Uninstalling ONLYOFFICE Desktop Editors
+2. From the application menu:  
 
-To remove the snap containing ONLYOFFICE editors use the following command:
+   Look for ONLYOFFICE in your computer's application menu (usually under an "Office" category).
 
-```
-# snap remove onlyoffice-desktopeditors
-```
+## **Managing your installation ⚙️**
 
-## Connect removable media
+Here are some helpful commands for managing the Snap package.
 
-ONLYOFFICE Desktop Editors can read files from and write files to the `/media` directory. For this use the following command:
+### **Allow access to removable media**
+
+To open and save documents on USB drives or external hard disks, you need to grant the snap permission to access removable media.
 
 ```
 # snap connect onlyoffice-desktopeditors:removable-media
 ```
+### **Uninstalling the editors**
 
-## Project Information
+If you need to remove the application, simply run:
+```
+# snap remove onlyoffice-desktopeditors
+```
+## **Useful links & resources 🔗**
 
-Official website: [https://www.onlyoffice.com/apps.aspx](https://www.onlyoffice.com/apps.aspx/?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnap)
+* **Snapcraft Store**: Find our application on the [official Snap Store](https://snapcraft.io/onlyoffice-desktopeditors).
+* **Official website:** Click [here](https://www.onlyoffice.com/desktop?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnapDesktop) to learn more about ONLYOFFICE Desktop Editors.
+* **Main GitHub repository:** Check out the [source code](https://github.com/ONLYOFFICE/DesktopEditors) for the complete project information.  
+* **Help Center (Tutorials):** Learn [how to work with the app](https://helpcenter.onlyoffice.com/desktop?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnapDesktop).
 
-Code repository: [https://github.com/ONLYOFFICE/DesktopEditors](https://github.com/ONLYOFFICE/DesktopEditors "https://github.com/ONLYOFFICE/DesktopEditors")
 
-## User Feedback and Support
+## **Need help or have an idea? Get support here 💡**
 
-If you have any problems with or questions about ONLYOFFICE Desktop Editors, please visit our official forum to find answers to your questions: [forum.onlyoffice.com][1] or you can ask and answer ONLYOFFICE development questions on [Stack Overflow][3].
-
-  [1]: https://forum.onlyoffice.com
-  [2]: https://github.com/ONLYOFFICE/DocumentServer
-  [3]: http://stackoverflow.com/questions/tagged/onlyoffice
+* **🐞 Found a bug?** Please report it by creating an issue [here](https://github.com/ONLYOFFICE/snap-desktopeditors/issues).  
+* **❓ Have a question?** Ask our community and developers on the [ONLYOFFICE Forum](https://community.onlyoffice.com).  
+* **💡 Want to suggest a feature?** Share your ideas on our [feedback platform](https://feedback.onlyoffice.com/forums/966080-your-voice-matters).
+* **🧑‍💻 Need help for developers?** Check our [API documentation](https://api.onlyoffice.com/?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSnapDesktop).
