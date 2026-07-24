@@ -37,6 +37,12 @@ layout:
   /usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libpsl.so.5:
     symlink: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libpsl.so.5
 
+lint:
+  ignore:
+    - classic
+    - library:
+      - usr/lib/**/libQt5*.so*
+
 plugs:
   gtk-3-themes:
     interface: content
@@ -215,7 +221,7 @@ parts:
       run-desktopeditors.sh: usr/bin/desktopeditors
 
   cleanup:
-    after: [onlyoffice-desktopeditors]
+    after: [onlyoffice-desktopeditors, gstreamer]
     plugin: nil
     build-snaps: [core24, gtk-common-themes, gnome-42-2204]
     override-prime: |
@@ -223,3 +229,4 @@ parts:
       for snap in "core24" "gtk-common-themes" "gnome-42-2204"; do
         cd "/snap/$snap/current" && find . -type f,l -name *.so* -exec rm -f "$CRAFT_PRIME/{}" \;
       done
+      cat $CRAFT_PROJECT_DIR/clean.list | while read f; do rm -f $CRAFT_PRIME/usr/lib/*-linux-gnu/$f*; rm -f $CRAFT_PRIME/lib/*-linux-gnu/$f*; done
